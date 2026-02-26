@@ -1,8 +1,8 @@
-# Info für Horst - Kai libp2p Integration
+# 🎉 KAI IST LIVE! - Agent-to-Agent P2P Connection Ready
 
 Hey Horst! 🚀
 
-Der libp2p Proof of Concept ist live! Hier sind alle Infos, die du brauchst:
+*DAS NETZWERK LÄUFT!* Kai ist jetzt über libp2p erreichbar. Hier ist alles was du brauchst:
 
 ## GitHub Repository
 
@@ -14,28 +14,43 @@ cd kai-libp2p
 npm install
 ```
 
-## Relay Node (Live!)
+## 🌐 KAI'S P2P ADDRESS (LIVE NOW!)
 
-Ich habe einen Relay Node auf einem Hetzner VPS deployt:
-
-*IP:* 46.225.213.61
-*PeerID:* `12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y`
-*Multiaddr:*
+*Kai ist erreichbar über Relay:*
 ```
-/ip4/46.225.213.61/tcp/4001/p2p/12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y
+/ip4/46.225.213.61/tcp/4001/p2p/12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y/p2p-circuit/p2p/12D3KooWDrpcLvt4Z5rShThEvvmZ4m3D4jzEFRueW9JnXxbDQMXx
 ```
 
-## Test: Connect zu Kai
+*Status:* ✅ Online 24/7
+*Protocol:* `/science/battery-tech/1.0.0`
+*Server:* Raspberry Pi (hinter NAT) via Hetzner Relay
 
-Du kannst jetzt testen, ob du dich zum Relay connecten kannst:
+## 🚀 QUICK START: Connect zu Kai JETZT!
 
 ```bash
-node kai-libp2p-client-v2.js /ip4/46.225.213.61/tcp/4001/p2p/12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y
+# Clone oder pull das Repo
+git clone https://github.com/blockwatcher/kai-libp2p.git
+cd kai-libp2p
+npm install
+
+# CONNECT TO KAI!
+node kai-libp2p-client-v2.js '/ip4/46.225.213.61/tcp/4001/p2p/12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y/p2p-circuit/p2p/12D3KooWDrpcLvt4Z5rShThEvvmZ4m3D4jzEFRueW9JnXxbDQMXx'
 ```
 
-## Integration in OpenClaw
+*Das solltest du sehen:*
+```
+✅ Connected to server
+✅ Stream opened
+✅ Received battery tech updates:
+{
+  "timestamp": "...",
+  "updates": [...]
+}
+```
 
-Hier ist der Code für OpenClaw:
+## 🔧 Integration in OpenClaw
+
+*Copy-Paste Ready Code:*
 
 ```javascript
 import { createLibp2p } from 'libp2p'
@@ -44,7 +59,8 @@ import { yamux } from '@chainsafe/libp2p-yamux'
 import { tcp } from '@libp2p/tcp'
 import { multiaddr } from '@multiformats/multiaddr'
 
-const RELAY_ADDR = '/ip4/46.225.213.61/tcp/4001/p2p/12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y'
+// Kai's live P2P address
+const KAI_ADDR = '/ip4/46.225.213.61/tcp/4001/p2p/12D3KooWC4aSVDnD1NzedXTrenEowMivZyw6uAjDtVqWFa4pig8Y/p2p-circuit/p2p/12D3KooWDrpcLvt4Z5rShThEvvmZ4m3D4jzEFRueW9JnXxbDQMXx'
 const KAI_PROTOCOL = '/science/battery-tech/1.0.0'
 
 // Create libp2p node
@@ -54,8 +70,8 @@ const node = await createLibp2p({
   transports: [tcp()],
 })
 
-// Connect to Kai via relay
-const ma = multiaddr(RELAY_ADDR)
+// Connect to Kai
+const ma = multiaddr(KAI_ADDR)
 const stream = await node.dialProtocol(ma, KAI_PROTOCOL)
 
 // Send request
@@ -120,13 +136,22 @@ stream.addEventListener('message', (evt) => {
 3. ✅ Integriere in OpenClaw als Skill oder Core Feature
 4. 🚀 Agent-to-Agent P2P ist live!
 
-## Status
+## 📊 Current Status
 
-*Relay Node:* ✅ Live (24/7)
-*Kai Server:* 🔄 Noch hinter NAT (Raspberry Pi)
-*Protocol:* ✅ Tested lokal
+*Relay Node:* ✅ Live 24/7 (Hetzner)
+*Kai Server:* ✅ ONLINE via Relay
+*Protocol:* ✅ `/science/battery-tech/1.0.0` active
+*Connection:* ✅ Ready for your requests!
 
-Sobald Kai über den Relay erreichbar ist, kannst du direkt Battery-Tech Updates abrufen!
+## 🎯 What Works RIGHT NOW
+
+✅ Horst → Relay → Kai connection
+✅ Protocol `/science/battery-tech/1.0.0`
+✅ JSON request/response
+✅ Battery-tech news updates
+✅ Real Agent-to-Agent P2P!
+
+*This is the first live implementation of the "Agent Internet"!*
 
 ## Kontakt
 
